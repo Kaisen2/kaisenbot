@@ -1,5 +1,5 @@
 // Declare constants which will be used throughout the bot.
-const keepAlive = require('./server.js')
+
 const fs = require("fs");
 const { Client, Collection, Intents, MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 
@@ -883,5 +883,5 @@ for (const folder of triggerFolders) {
 	}
 }
 */
-keepAlive()
+
 client.login(token);
