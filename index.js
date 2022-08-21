@@ -695,20 +695,23 @@ client.on("messageCreate", async (message) => {
   }
 })
 
-client.on("guildMemberAdd", async (member) => {
-  console.log(member.user.username)
-  setTimeout(async () => {
-    const channel = client.channels.cache.get('897871534130090055')
-    let messages = await channel.messages.fetch({ limit: 10 }).then(messages => messages.filter(x => x.content == `${member.user.username}#${member.user.discriminator}`))
-    let image = messages.first().attachments.first().url
-    let embed = new MessageEmbed()
-      .setDescription(`Welcome to **Kaisen**, we hope you enjoy your time with us! <:KAISENeggyuuji:846830987295457310>\n\nꕤ  <#846520914094850070>\n\nꕤ  <#846520939772772392>\n\nꕤ   <#846700402430181386>\n\nꕤ   <#846153719351083009>`)
-      .setImage(image)
-      .setColor('#386DAE')
-      .setTitle(`Welcome, ${member.user.username}!`)
-    const welc = client.channels.cache.get('906088560422166528')
-    welc.send({ content: '<@&852975435704959025>', embeds: [embed] })
-  }, 20000)
+client.on("guildMemberUpdate", async (oldMember, newMember) => {
+  if (newMember.roles.cache.find(x => x.id == "846503022682964001") && !oldMember.roles.cache.find(x => x.id == "846503022682964001")) {
+    try {
+	const channel = client.channels.cache.get('897871534130090055')
+	let messages = await channel.messages.fetch().then(messages => messages.filter(x => x.content == `${newMember.user.username}#${newMember.user.discriminator}`))
+	let image = messages.first().attachments.first().url
+	let embed = new MessageEmbed()
+	  .setDescription(`**Welcome to Kaisen**, we hope you enjoy your time with us! <:EggYuuji:846830987295457310>\n\n ꕤ <#846520914094850070>\n\n ꕤ <#846520939772772392>\n\n ꕤ <#846153719351083009>\n\n ꕤ <#846700402430181386>\n\n ꕤ <#1001421106755936256> \n\n\n**ALSO! don’t forget to open your pack at <#1004888849903788032>!**`)
+	  .setImage(image)
+	  .setColor('#386DAE')
+	  .setTitle(`Welcome, ${newMember.user.username}!`)
+	const welc = client.channels.cache.get('906088560422166528')
+	welc.send({ content: '<@&852975435704959025>', embeds: [embed] })
+    } catch(err) {
+        console.log(err)
+    }
+  }
 })
 
 client.on("guildMemberAdd", async (member) => {
