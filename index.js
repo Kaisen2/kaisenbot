@@ -696,7 +696,16 @@ client.on("messageCreate", async (message) => {
 })
 
 client.on("guildMemberUpdate", async (oldMember, newMember) => {
-  if (newMember.roles.cache.find(x => x.id == "846503022682964001") && !oldMember.roles.cache.find(x => x.id == "846503022682964001")) {
+  const hasRole = (member) => {
+  	if (member.roles.cache.find(x => x.id === "846503022682964001")) {
+		return true
+	} else {
+		return false
+	}
+  }
+  const oldHas = hasRole(oldMember)
+  const newHas = hasRole(newMember)
+  if (!oldHas && newHas) {
     try {
 	const channel = client.channels.cache.get('897871534130090055')
 	let messages = await channel.messages.fetch().then(messages => messages.filter(x => x.content == `${newMember.user.username}#${newMember.user.discriminator}`))
