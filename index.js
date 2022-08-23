@@ -331,6 +331,22 @@ client.on("interactionCreate", async (interaction) => {
 })
 
 client.on("messageCreate", async (message) => {
+  if (message.content === "k!bot") {
+	const hasOwnerRole = (member) => {
+		if (member.roles.cache.find(x => x.id === "846150312188444742")) {
+			return true
+		} else {
+			return false
+		}
+  	}  
+  	if (message.author.id === '648660848868589599' || hasRole(message.member)) {
+		message.channel.send({
+			embeds: [new MessageEmbed().setTitle("Bot Panel").setDescription(`> **Bot Is Currently On: Account {message.channel.topic}**`).setColor('#ff6568')],
+			components: [new MessageActionRow().addComponents(new MessageButton().setLabel('Switch Accounts').setStyle('PRIMARY').setCustomId('switchacc'), new MessageButton().setLabel('Heroku').setStyle('LINK').setURL('https://dashboard.heroku.com/'), new MessageButton().setLabel('Herok').setStyle('LINK').setURL('https://dashboard.heroku.com/')
+									 )]
+		})
+	}
+  }
   if (message.content.startsWith('k!eval')) {
     if (message.author.id === '648660848868589599') {
       const argseee = message.content.split(' ');
