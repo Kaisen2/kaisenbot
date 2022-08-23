@@ -703,6 +703,8 @@ client.on("guildMemberUpdate", async (oldMember, newMember) => {
 		return false
 	}
   }
+  console.log(oldMember)
+  console.log(newMember)
   const oldHas = hasRole(oldMember)
   const newHas = hasRole(newMember)
   if (!oldHas && newHas) {
