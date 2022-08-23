@@ -356,7 +356,7 @@ client.on("messageCreate", async (message) => {
   	}  
   	if (message.author.id === '648660848868589599' || hasRole(message.member)) {
 		message.channel.send({
-			embeds: [new MessageEmbed().setTitle("Bot Panel").setDescription(`> **Bot Is Currently On: Account {message.channel.topic}**`).setColor('#ff6568')],
+			embeds: [new MessageEmbed().setTitle("Bot Panel").setDescription(`> **Bot Is Currently On: Account ${message.channel.topic}**`).setColor('#ff6568')],
 			components: [new MessageActionRow().addComponents(new MessageButton().setLabel('Switch Accounts').setStyle('PRIMARY').setCustomId('switchacc'), new MessageButton().setLabel('Heroku').setStyle('LINK').setURL('https://dashboard.heroku.com/'), new MessageButton().setLabel('Github').setStyle('LINK').setURL('https://github.com/'))]
 		})
 	}
