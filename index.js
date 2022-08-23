@@ -59,7 +59,7 @@ client.on("interactionCreate", async (interaction) => {
 	}
 	const messageUpdateChan = interaction.channel
 	interaction.update({
-		embeds: [new MessageEmbed().setTitle("Bot Panel").setDescription(`> **Bot Is Currently On: Account {accNum}**`).setColor('#ff6568')]
+		embeds: [new MessageEmbed().setTitle("Bot Panel").setDescription(`> **Bot Is Currently On: Account ${accNum}**`).setColor('#ff6568')]
 	})
     	messageUpdateChan.send({ content: "✅ **Message Updated**", reply: { messageReference: interaction.message.id } })
     }
