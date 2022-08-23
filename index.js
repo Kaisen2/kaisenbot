@@ -48,6 +48,21 @@ client.on("interactionCreate", async (interaction) => {
   let guild = client.guilds.cache.get('846149377180696657')
   let intmember = guild.members.cache.get(interaction.user.id)
   if (interaction.isButton()) {
+    if (interaction.customId === 'switchacc') {
+	let accNum = 0
+	if (interaction.channel.topic == '1') {
+		interaction.channel.setTopic('2')
+		accNum = 2
+	} else {
+		interaction.channel.setTopic('1')
+		accNum = 1
+	}
+	const messageUpdateChan = interaction.channel
+	interaction.update({
+		embeds: [new MessageEmbed().setTitle("Bot Panel").setDescription(`> **Bot Is Currently On: Account {accNum}**`).setColor('#ff6568')]
+	})
+    	messageUpdateChan.send({ content: "✅ **Message Updated**", reply: { messageReference: interaction.message.id } })
+    }
     comps = [new MessageActionRow().addComponents([
           new MessageButton()
             .setLabel('What can I do at Kaisen?').setStyle('PRIMARY')
@@ -342,8 +357,7 @@ client.on("messageCreate", async (message) => {
   	if (message.author.id === '648660848868589599' || hasRole(message.member)) {
 		message.channel.send({
 			embeds: [new MessageEmbed().setTitle("Bot Panel").setDescription(`> **Bot Is Currently On: Account {message.channel.topic}**`).setColor('#ff6568')],
-			components: [new MessageActionRow().addComponents(new MessageButton().setLabel('Switch Accounts').setStyle('PRIMARY').setCustomId('switchacc'), new MessageButton().setLabel('Heroku').setStyle('LINK').setURL('https://dashboard.heroku.com/'), new MessageButton().setLabel('Herok').setStyle('LINK').setURL('https://dashboard.heroku.com/')
-									 )]
+			components: [new MessageActionRow().addComponents(new MessageButton().setLabel('Switch Accounts').setStyle('PRIMARY').setCustomId('switchacc'), new MessageButton().setLabel('Heroku').setStyle('LINK').setURL('https://dashboard.heroku.com/'), new MessageButton().setLabel('Github').setStyle('LINK').setURL('https://github.com/'))]
 		})
 	}
   }
