@@ -22,8 +22,6 @@ const client = new Client({
 client.on("warn", console.log).on("debug", console.log)
 
 client.on("ready", async () => {
-  const kaisenServer = client.guilds.cache.get('846149377180696657')
-  await kaisenServer.members.fetch())
   console.log(`Ready! Logged in as ${client.user.tag}`);
     let statuses = [{
     text: 'the culling game',
